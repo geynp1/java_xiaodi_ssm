@@ -2,11 +2,9 @@ package net.xdclass.demoproject.controller;
 
 import net.xdclass.demoproject.domain.Video;
 import net.xdclass.demoproject.service.VideoService;
+import net.xdclass.demoproject.utils.JsonData;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +15,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/api/v1/video")
+@RequestMapping("/api/v1/pub/video")
 public class VideoController {
 
     @Autowired
@@ -27,7 +25,13 @@ public class VideoController {
     @GetMapping("list")
     public Object list(){
         List<Video> list = videoService.listVideo();
-       return list;
+       return JsonData.buildSuccess(list);
+    }
+
+    @PostMapping("save_video_chapter")
+    public JsonData saveVideo(@RequestBody Video video) {
+        System.out.println(video.toString());
+        return JsonData.buildSuccess(video);
     }
 }
 

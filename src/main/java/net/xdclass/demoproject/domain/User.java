@@ -1,8 +1,12 @@
 package net.xdclass.demoproject.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class User {
     private int id;
     private String username;
+    @JsonIgnore
     private String pwd;
 
     public User() {
@@ -36,5 +40,14 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", pwd='" + pwd + '\'' +
+                '}';
     }
 }
