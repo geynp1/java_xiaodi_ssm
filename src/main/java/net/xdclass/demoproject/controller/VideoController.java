@@ -1,5 +1,7 @@
 package net.xdclass.demoproject.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.xdclass.demoproject.domain.Video;
 import net.xdclass.demoproject.service.VideoService;
 import net.xdclass.demoproject.utils.JsonData;
@@ -23,9 +25,12 @@ public class VideoController {
 
 //    @RequestMapping(value = "list",method = RequestMethod.GET)
     @GetMapping("list")
-    public Object list(){
+    public Object list() throws JsonProcessingException {
         List<Video> list = videoService.listVideo();
-       return JsonData.buildSuccess(list);
+
+
+
+        return JsonData.buildSuccess(list);
     }
 
     @PostMapping("save_video_chapter")
