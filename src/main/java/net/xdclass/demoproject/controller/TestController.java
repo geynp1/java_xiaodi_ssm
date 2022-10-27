@@ -24,6 +24,14 @@ public class TestController {
     @Autowired
     private WXConfig wxConfig;
 
+
+    @RequestMapping("list")//通过配置文件
+    public JsonData testExp(){
+        int i = 1/0;
+
+        return JsonData.buildSuccess("");
+    }
+
     @RequestMapping("get_config")//通过配置文件
     public JsonData testConfig(){
         Map<String, String> map = new HashMap<>();
