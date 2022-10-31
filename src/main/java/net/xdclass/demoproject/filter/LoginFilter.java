@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.io.PipedWriter;
 import java.io.PrintWriter;
 
-@WebFilter(urlPatterns = "/api/v1/pri/*",filterName = "loginFilter")
+//@WebFilter(urlPatterns = "/api/v1/pri/*",filterName = "loginFilter")
 public class LoginFilter implements Filter {
 
     //jackson中把数据序列化的工具
