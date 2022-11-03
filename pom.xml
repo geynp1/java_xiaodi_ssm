@@ -91,11 +91,11 @@
             <version>3.5.4</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-log4j12</artifactId>&lt;!&ndash;日志打印&ndash;&gt;-->
-<!--            <version>1.7.5</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId><!--日志打印-->
+            <version>1.7.5</version>
+        </dependency>
     </dependencies>
 
     <build>
