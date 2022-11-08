@@ -49,4 +49,37 @@ mybatis是使用接口动态代理
         </foreach>
     </insert>
 
+
+    <update   id="updateVideo" parameterType="net.xdclass.demoproject.entity.Video">
+        update video
+        set
+        title = #{title,jdbcType=VARCHAR},
+        summary = #{summary,jdbcType=VARCHAR},
+        cover_img = #{coverImg,jdbcType=VARCHAR},
+        price = #{price,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        point = #{point,jdbcType=DOUBLE}
+        where
+        id = #{id}
+    </update>
+
+    <update   id="updateVideoSelective" parameterType="net.xdclass.demoproject.entity.Video">
+        update video
+        <trim prefix="set" suffixOverrides=","><!--为了去掉最后一个逗号-->
+            <if test="title != null">title = #{title,jdbcType=VARCHAR},</if>
+            <if test="summary != null">summary = #{summary,jdbcType=VARCHAR},</if>
+            <if test="coverImg != null">cover_img = #{coverImg,jdbcType=VARCHAR},</if>
+            <if test="price != 0">price = #{price,jdbcType=INTEGER},</if>
+            <if test="createTime != null">create_time = #{createTime,jdbcType=TIMESTAMP},</if>
+            <!--一定要看pojo是基本数据类型，还是包装数据类型-->
+            <if test="point != null">point = #{point,jdbcType=DOUBLE},</if>
+
+        </trim>
+        where
+        id = #{id}
+    </update>
+
+    <delete id="deleteByCreateTimeAndPrice" parameterType="java.util.Map">
+        delete from video where create_time <![CDATA[ > ]]> #{createTime} and price  <![CDATA[ >=  ]]> #{price}
+    </delete>
 </mapper>
