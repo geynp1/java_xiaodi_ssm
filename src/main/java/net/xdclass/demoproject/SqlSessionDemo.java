@@ -30,12 +30,12 @@ public class SqlSessionDemo {
 
             VideoMapper videoMapper = sqlSession.getMapper(VideoMapper.class);
 
-//            Video video = videoMapper.selectById(44);
+//            Video video = videoMapper.selectById(45);
 //            System.out.println(video.toString());
             //通过注解
 //            List<Video> videoList1 =  videoMapper.selectList();
-//            List<Video> videoList = videoMapper.selectListByXML();
-//            System.out.println(videoList.toString());
+            List<Video> videoList = videoMapper.selectListByXML();
+            System.out.println(videoList.toString());
             //多参数查询
 //            List<Video> videoList = videoMapper.selectByPointAndTitleLike(8.7, "HTML");
 //            System.out.println(videoList.toString());
@@ -73,11 +73,11 @@ public class SqlSessionDemo {
 //            videoMapper.updateVideoSelective(video);
 
 
-            Map<String, Object> map = new HashMap<>();
-            map.put("createTime", "2021-01-01 00:00:00");
-            map.put("price", 9000);
-            int rows = videoMapper.deleteByCreateTimeAndPrice(map);
-            System.out.println(rows);
+//            Map<String, Object> map = new HashMap<>();
+//            map.put("createTime", "2021-01-01 00:00:00");
+//            map.put("price", 9000);
+//            int rows = videoMapper.deleteByCreateTimeAndPrice(map);
+//            System.out.println(rows);
         }
     }
 }

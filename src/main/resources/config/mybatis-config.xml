@@ -9,6 +9,11 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/><!--配置文件里添加-->
     </settings>
 
+    <typeAliases>
+<!--        <typeAlias type="net.xdclass.demoproject.entity.Video" alias="Video"/>-->
+        <package name="net.xdclass.demoproject.entity"/>
+    </typeAliases>
+
     <environments default="development"><!--开发环境-->
         <environment id="development">
             <transactionManager type="JDBC"/>

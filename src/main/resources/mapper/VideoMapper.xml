@@ -9,28 +9,33 @@ namespace: 名称空间，一般需要保持全局唯一， 最好是和dao层�
 mybatis是使用接口动态代理
 -->
 <mapper namespace="net.xdclass.demoproject.dao.VideoMapper">
+
+    <sql id="base_video_field">
+        id,title,summary,cover_img
+    </sql>
+
     <!--resultType:基本的/ResultMap:高级的-->
     <!--
       statement sql
       id： 当前mapper下需要唯一
       resultType : sql查询结果集的封装
       -->
-    <select id="selectById" resultType="net.xdclass.demoproject.entity.Video"><!--方法名要和Mapper一一对应-->
-        select * from video where id = #{videoId,jdbcType=INTEGER}
+    <select id="selectById" resultType="Video"><!--方法名要和Mapper一一对应-->
+        select <include refid="base_video_field"/> from video where id = #{videoId,jdbcType=INTEGER}
     </select>
 
 
-    <select id="selectListByXML" resultType="net.xdclass.demoproject.entity.Video">
-        select * from video
+    <select id="selectListByXML" resultType="Video">
+        select <include refid="base_video_field"/> from video
     </select>
 
 
 
-    <select id="selectByPointAndTitleLike" resultType="net.xdclass.demoproject.entity.Video">
+    <select id="selectByPointAndTitleLike" resultType="Video">
         select * from video where point=#{point} and title like concat('%',#{title,jdbcType=VARCHAR},'%')
     </select>
 
-    <insert   id="add" parameterType="net.xdclass.demoproject.entity.Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <insert   id="add" parameterType="Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         INSERT INTO video
             (title, summary, cover_img, price, create_time, point)
         VALUES
@@ -38,7 +43,7 @@ mybatis是使用接口动态代理
          #{price,jdbcType=INTEGER},#{createTime,jdbcType=TIMESTAMP},#{point,jdbcType=DOUBLE});
     </insert>
 
-    <insert   id="addBatch" parameterType="net.xdclass.demoproject.entity.Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <insert   id="addBatch" parameterType="Video" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 
         INSERT INTO video
             (title, summary, cover_img, price, create_time, point)
@@ -50,7 +55,7 @@ mybatis是使用接口动态代理
     </insert>
 
 
-    <update   id="updateVideo" parameterType="net.xdclass.demoproject.entity.Video">
+    <update   id="updateVideo" parameterType="Video">
         update video
         set
         title = #{title,jdbcType=VARCHAR},
@@ -63,7 +68,7 @@ mybatis是使用接口动态代理
         id = #{id}
     </update>
 
-    <update   id="updateVideoSelective" parameterType="net.xdclass.demoproject.entity.Video">
+    <update   id="updateVideoSelective" parameterType="Video">
         update video
         <trim prefix="set" suffixOverrides=","><!--为了去掉最后一个逗号-->
             <if test="title != null">title = #{title,jdbcType=VARCHAR},</if>
@@ -79,7 +84,8 @@ mybatis是使用接口动态代理
         id = #{id}
     </update>
 
-    <delete id="deleteByCreateTimeAndPrice" parameterType="java.util.Map">
+<!--    <delete id="deleteByCreateTimeAndPrice" parameterType="java.util.Map">-->
+    <delete id="deleteByCreateTimeAndPrice" parameterType="Map">
         delete from video where create_time <![CDATA[ > ]]> #{createTime} and price  <![CDATA[ >=  ]]> #{price}
     </delete>
 </mapper>
