@@ -1,7 +1,10 @@
 package net.xdclass.demoproject;
 
 import net.xdclass.demoproject.dao.VideoMapper;
+import net.xdclass.demoproject.dao.VideoOrderMapper;
+import net.xdclass.demoproject.entity.User;
 import net.xdclass.demoproject.entity.Video;
+import net.xdclass.demoproject.entity.VideoOrder;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -29,13 +32,13 @@ public class SqlSessionDemo {
         try(SqlSession sqlSession = sqlSessionFactory.openSession(true)){
 
             VideoMapper videoMapper = sqlSession.getMapper(VideoMapper.class);
-
+            VideoOrderMapper videoOrderMapper = sqlSession.getMapper(VideoOrderMapper.class);
 //            Video video = videoMapper.selectById(45);
 //            System.out.println(video.toString());
             //通过注解
 //            List<Video> videoList1 =  videoMapper.selectList();
-            List<Video> videoList = videoMapper.selectListByXML();
-            System.out.println(videoList.toString());
+//            List<Video> videoList = videoMapper.selectListByXML();
+//            System.out.println(videoList.toString());
             //多参数查询
 //            List<Video> videoList = videoMapper.selectByPointAndTitleLike(8.7, "HTML");
 //            System.out.println(videoList.toString());
@@ -78,6 +81,17 @@ public class SqlSessionDemo {
 //            map.put("price", 9000);
 //            int rows = videoMapper.deleteByCreateTimeAndPrice(map);
 //            System.out.println(rows);
+
+//            Video video = videoMapper.selectBaseFieldByIdWithResultMap(45);
+//            System.out.println(video.toString());
+
+            //resultmap asssociation关联查询
+//            List<VideoOrder> videoOrderList = videoOrderMapper.queryVideoOrderList();
+//            System.out.println(videoOrderList.toString());
+
+            //resultmap collection测试
+            List<User> userList = videoOrderMapper.queryUserOrder();
+            System.out.println(userList.toString());
         }
     }
 }

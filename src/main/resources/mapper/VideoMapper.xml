@@ -88,4 +88,23 @@ mybatis是使用接口动态代理
     <delete id="deleteByCreateTimeAndPrice" parameterType="Map">
         delete from video where create_time <![CDATA[ > ]]> #{createTime} and price  <![CDATA[ >=  ]]> #{price}
     </delete>
+
+
+
+    <resultMap id="VideoResultMap" type="Video">
+        <!--
+        id 指定查询列的唯⼀标示
+        column 数据库字段的名称
+        property pojo类的名称
+        -->
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="video_tile" property="title" jdbcType="VARCHAR" />
+        <result column="summary" property="summary" jdbcType="VARCHAR" />
+        <result column="cover_img" property="coverImg" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectBaseFieldByIdWithResultMap" resultMap="VideoResultMap">
+        select id , title as video_tile, summary, cover_img from video where id = #{video_id}
+    </select>
+
 </mapper>

@@ -28,5 +28,6 @@
     </environments>
     <mappers>
         <mapper resource="mapper/VideoMapper.xml"/>
+        <mapper resource="mapper/VideoOrderMapper.xml"/>
     </mappers>
 </configuration>
