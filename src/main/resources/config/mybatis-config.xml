@@ -25,8 +25,8 @@
 
     <environments default="development"><!--开发环境-->
         <environment id="development">
-<!--            <transactionManager type="JDBC"/>-->
-            <transactionManager type="MANAGED"/>
+            <transactionManager type="JDBC"/><!--有事务-->
+<!--            <transactionManager type="MANAGED"/>--><!--无事务，事务依赖spring容器-->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url"
