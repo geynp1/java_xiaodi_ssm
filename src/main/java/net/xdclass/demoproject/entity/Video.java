@@ -1,8 +1,9 @@
 package net.xdclass.demoproject.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Video {
+public class Video implements Serializable {
     /**
      * 主键
      */

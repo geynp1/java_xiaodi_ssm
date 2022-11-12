@@ -1,5 +1,6 @@
 package net.xdclass.demoproject.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *   `phone` varchar(64) DEFAULT '' COMMENT '手机号',
  *   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
  */
-public class User {
+public class User implements Serializable {
 
     private int id;
 

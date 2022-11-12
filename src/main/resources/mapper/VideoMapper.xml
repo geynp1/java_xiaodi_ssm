@@ -14,13 +14,14 @@ mybatis是使用接口动态代理
         id,title,summary,cover_img
     </sql>
 
+    <cache eviction="LRU" flushInterval="100000" readOnly="true" size="1024"/>
     <!--resultType:基本的/ResultMap:高级的-->
     <!--
       statement sql
       id： 当前mapper下需要唯一
       resultType : sql查询结果集的封装
       -->
-    <select id="selectById" resultType="Video"><!--方法名要和Mapper一一对应-->
+    <select id="selectById" resultType="Video" useCache="false"><!--方法名要和Mapper一一对应-->
         select <include refid="base_video_field"/> from video where id = #{videoId,jdbcType=INTEGER}
     </select>
 

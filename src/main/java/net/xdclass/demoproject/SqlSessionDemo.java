@@ -33,8 +33,11 @@ public class SqlSessionDemo {
 
             VideoMapper videoMapper = sqlSession.getMapper(VideoMapper.class);
             VideoOrderMapper videoOrderMapper = sqlSession.getMapper(VideoOrderMapper.class);
-//            Video video = videoMapper.selectById(45);
-//            System.out.println(video.toString());
+//            for (int i = 0; i < 2; i++) {
+//                Video video = videoMapper.selectById(44);
+//                System.out.println(video.toString());
+//            }
+
             //通过注解
 //            List<Video> videoList1 =  videoMapper.selectList();
 //            List<Video> videoList = videoMapper.selectListByXML();
@@ -90,8 +93,16 @@ public class SqlSessionDemo {
 //            System.out.println(videoOrderList.toString());
 
             //resultmap collection测试
-            List<User> userList = videoOrderMapper.queryUserOrder();
-            System.out.println(userList.toString());
+//            List<User> userList = videoOrderMapper.queryUserOrder();
+//            System.out.println(userList.toString());
+
+            //resultmap asssociation关联查询
+            List<VideoOrder> videoOrderList = videoOrderMapper.queryVideoOrderListLazy();
+
+            for (VideoOrder videoOrder : videoOrderList) {
+//                System.out.println(videoOrder.getVideoTitle());
+                System.out.println(videoOrder.getUser().getName());
+            }
         }
     }
 }
